@@ -1,0 +1,146 @@
+/* Fallback locale: il sito resta leggibile anche senza Google Fonts. */
+@font-face{font-family:Montserrat;src:url('assets/montserrat-regular.ttf') format('truetype');font-weight:400;font-display:swap}
+:root{
+  --bg:#0b0b0b;
+  --text:#f5f5f5;
+  --muted:#9e9e9e;
+  --font:Montserrat,Arial,sans-serif;
+  --mono:Montserrat,Arial,sans-serif;
+  --gutter:clamp(22px,4vw,72px);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:104px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+a,button{-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible{outline:2px solid var(--text);outline-offset:5px}
+[hidden]{display:none!important}
+.micro{font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:1.3px;text-transform:uppercase;line-height:1.7}
+.skip-link{position:fixed;top:12px;left:12px;transform:translateY(-200%);z-index:10;background:var(--text);color:var(--bg);padding:14px}
+.skip-link:focus{transform:none}
+/* Navbar opaca, priva di bordi e sempre raggiungibile. */
+/* Il grande nome è l'unico titolo della hero; il vuoto è parte del layout. */
+.hero{min-height:480px;height:70svh;padding:clamp(100px,12vh,120px) var(--gutter) 46px;display:flex;flex-direction:column;align-items:flex-start}
+.hero-kicker{color:var(--muted);margin:0 0 22px}
+.hero h1{font-size:clamp(82px,10.4vw,170px);font-weight:400;line-height:.91;letter-spacing:-.065em;margin:0 0 36px}
+.hero h1{cursor:default}
+.cursor-reveal{position:fixed;inset:0 auto auto 0;width:280px;height:auto;aspect-ratio:3/2;z-index:50;pointer-events:none;opacity:0;visibility:hidden;transform:translate3d(var(--cursor-x,-300px),var(--cursor-y,-300px),0) rotate(var(--cursor-rotation,0deg));will-change:transform,opacity;transition:opacity .28s ease,visibility 0s linear .28s}
+.cursor-reveal.is-visible{opacity:1;visibility:visible;transition:opacity .28s ease,visibility 0s}
+.cursor-reveal img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(.92);transition:transform .38s var(--ease)}
+.cursor-reveal.is-visible img{transform:scale(1)}
+.hero-bottom{margin-top:0;padding-top:0;display:flex;width:100%;justify-content:space-between;align-items:flex-end;gap:24px}
+.hero-bio{color:var(--muted);font-size:14px;line-height:1.65;margin:0}
+.cta{display:inline-flex;align-items:center;gap:35px;padding:12px 0;font-size:13px;white-space:nowrap}
+.cta span{font-size:24px;transition:transform .3s var(--ease)}
+.cta:hover span{transform:translate(3px,3px)}
+/* Flex anima la larghezza: nessuna logica JS o libreria per l'hover. */
+.category-home{display:flex;gap:12px;padding:0 var(--gutter);height:clamp(430px,65svh,760px);scroll-margin-top:16px}
+.category-card{position:relative;isolation:isolate;display:block;overflow:hidden;flex:1 1 0;min-width:0;transition:flex .7s var(--ease)}
+.category-card img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+/* Velo uniforme, rimosso in hover, separato dal gradiente per le scritte. */
+.category-card::before{content:'';position:absolute;inset:0;z-index:1;background:rgba(11,11,11,.25);transition:background .6s var(--ease);pointer-events:none}
+/* Il gradiente interessa soltanto l'ultimo 20% della fotografia. */
+.category-card::after{content:'';position:absolute;inset:80% 0 0;z-index:2;background:linear-gradient(transparent,rgba(11,11,11,.92));pointer-events:none}
+.card-label{position:absolute;z-index:3;left:clamp(15px,1.6vw,28px);right:clamp(15px,1.6vw,28px);bottom:24px;display:flex;align-items:baseline;gap:9px;white-space:nowrap}
+.card-number{font-size:10px;letter-spacing:0}
+.card-label h2{font-size:clamp(17px,1.8vw,30px);font-weight:500;letter-spacing:-.7px;text-transform:uppercase;margin:0}
+.card-arrow{margin-left:auto;font-size:20px}
+/* Espansione riservata ai dispositivi con hover reale; tastiera equivalente. */
+@media(min-width:768px) and (hover:hover) and (pointer:fine){
+  .category-card:hover,.category-card:focus-visible{flex:1.35 1 0}
+  .category-card:hover::before,.category-card:focus-visible::before{background:rgba(11,11,11,0)}
+  .category-card:hover img,.category-card:focus-visible img{transform:scale(1.035)}
+}
+/* Presentazione allineata ai margini delle categorie. */
+.about{margin:110px var(--gutter) 0;padding-top:64px;border-top:1px solid #222;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:32px;align-items:center}
+.about-photo{grid-column:1 / span 4;display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}
+.about-content{grid-column:6 / span 6;min-width:0}
+.about-kicker{margin:0 0 20px;font-family:var(--mono);font-size:13px;font-weight:400;letter-spacing:1.3px;text-transform:uppercase;color:var(--muted)}
+.about-copy{max-width:58ch;font-size:1.05rem;line-height:1.65;color:var(--text)}
+.about-copy p{margin:0 0 20px}
+.about-copy p:last-child{margin-bottom:0}
+.about-contact{display:inline-block;margin-top:32px;font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--muted);transition:color .2s ease}
+.about-contact:hover,.about-contact:focus-visible{color:var(--text)}
+/* Footer in riga, allineato ai margini della griglia. */
+.site-footer{margin:90px var(--gutter) 0;padding:32px 0;border-top:1px solid #222;display:flex;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;gap:20px;color:var(--muted);font-family:var(--mono);font-size:13px;line-height:1.6}
+.site-footer a{color:var(--muted);transition:color .2s ease}
+.site-footer a:hover,.site-footer a:focus-visible{color:var(--text)}
+.footer-email{text-align:center}.footer-location{text-align:right}
+.privacy-page{max-width:1800px;margin:0 auto;padding:35px var(--gutter) 20px}
+.privacy-back{display:inline-block;margin-bottom:36px}
+.privacy-copy{max-width:680px}
+.privacy-page h1{font-size:clamp(32px,6vw,62px);font-weight:400;line-height:1.05;letter-spacing:-.045em;margin:0 0 14px}
+.privacy-updated{color:var(--muted);font-size:13px;margin:0 0 48px}
+.privacy-copy{font-size:15px;line-height:1.8;color:var(--muted)}
+.privacy-copy p{margin:0 0 24px}
+.privacy-copy h2{font-size:17px;font-weight:500;color:var(--text);margin:36px 0 10px}
+.privacy-copy a,.privacy-copy .protected-email{color:var(--muted);cursor:pointer;text-decoration:none;transition:color .2s ease}
+.privacy-copy a:hover,.privacy-copy a:focus-visible,.privacy-copy .protected-email:hover,.privacy-copy .protected-email:focus-visible{color:var(--text)}
+/* Gallerie esistenti: fotografie integre, senza ritaglio. */
+.category-view{padding:35px var(--gutter);max-width:1800px;margin:auto}
+.category-heading{display:flex;align-items:center;gap:35px;margin-bottom:35px}
+.back{font-family:var(--mono);font-size:11px;color:var(--muted);padding:12px 0}
+.category-heading h1{font-size:30px;font-weight:400;margin:0;letter-spacing:-1px}
+.gallery{columns:3;column-gap:24px;column-fill:balance}
+.photo{width:100%;padding:0;border:0;background:var(--bg);display:inline-block;vertical-align:top;overflow:hidden;margin:0 0 24px;break-inside:avoid;page-break-inside:avoid}
+.photo{background-color:#141414}
+.photo img{width:100%;height:auto;display:block;opacity:0;transition:opacity .45s ease,transform .4s}
+.photo img.is-loaded{opacity:1}
+.category-view.entering{animation:category-enter .3s ease both}
+@keyframes category-enter{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.category-view.entering{animation:none}.photo img{transition:none}}
+.photo:hover img{transform:scale(1.015)}
+/* Composizione Sport: posizioni esplicite, gap costante tra ogni scatto. */
+.gallery.sport-layout,.gallery.event-layout{columns:initial;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start;gap:24px}
+.gallery-column{display:flex;flex-direction:column;gap:24px;min-width:0}
+.gallery.sport-layout .photo,.gallery.event-layout .photo{display:block;width:100%;margin:0}
+/* Lightbox, frecce, contatore e chiusura. */
+dialog{max-width:none;max-height:none;width:100%;height:100dvh;border:0;margin:0;padding:70px 90px;background:var(--bg);color:var(--text);overflow:hidden}
+dialog::backdrop{background:var(--bg)}
+dialog[open]{display:flex;align-items:center;justify-content:center}
+#viewer-image{max-width:100%;max-height:calc(100dvh - 150px);object-fit:contain;min-height:0}
+#close{position:absolute;right:25px;top:12px;font-size:38px;background:var(--bg);border:0;width:48px;height:48px}
+#viewer-count{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);color:var(--muted)}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);background:var(--bg);border:0;width:48px;height:48px;font-size:27px}
+.prev{left:20px}.next{right:20px}
+body.viewing{overflow:hidden}
+/* Sotto 768px: quattro card orizzontali da 210px, impilate. */
+@media(max-width:767px){
+  html{scroll-padding-top:115px}
+  .hero{height:auto;min-height:auto;max-height:none;padding-top:48px;padding-bottom:40px}
+  .hero h1{font-size:clamp(2.8rem,11.5vw,3.8rem);line-height:1.05;margin-bottom:20px}
+  .hero-kicker{font-size:9px;margin-bottom:22px}
+  .hero-bottom{align-items:flex-start;flex-direction:column;justify-content:flex-start;gap:20px}
+  .hero-bio{font-size:13px;max-width:none}
+  .cta{font-size:12px;gap:25px}
+  .category-home{height:auto;flex-direction:column;gap:12px}
+  .category-card{flex:none;height:210px;min-height:210px}
+  .category-card img{object-position:center 40%}
+  .card-label{left:22px;right:22px;bottom:18px;gap:12px}
+  .card-label h2{font-size:26px}
+  .card-number{font-size:10px}
+  .category-card::after{inset:80% 0 0}
+  .about{margin-top:64px;grid-template-columns:minmax(0,1fr);gap:28px}
+  .about-photo{grid-column:1;max-height:380px}
+  .about-content{grid-column:1}
+  .site-footer{margin-top:90px;flex-direction:column;align-items:flex-start;gap:16px;font-size:13px}
+  .gallery{columns:2;column-gap:20px}
+  .photo{margin-bottom:20px}
+  .category-heading{gap:24px}
+  .category-heading h1{font-size:25px}
+  .gallery{columns:1;column-gap:0}
+  .gallery.sport-layout,.gallery.event-layout{display:flex;flex-direction:column;gap:20px}
+  .gallery-column{gap:20px}
+  .photo{margin-bottom:20px}
+  dialog{padding:65px 12px 95px}
+  #viewer-image{max-height:calc(100dvh - 165px)}
+  #close{right:9px;top:8px}
+  .arrow{top:auto;bottom:40px;transform:none}
+  .prev{left:calc(50% - 65px)}.next{right:calc(50% - 65px)}
+  #viewer-count{bottom:18px}
+}
+@media(max-width:767px),(hover:none){.cursor-reveal{display:none}}
+/* Rispetto delle preferenze di accessibilità, compreso lo scroll. */
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}

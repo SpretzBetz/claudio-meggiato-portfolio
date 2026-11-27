@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta name="description" content="Claudio Meggiato. Fotografia di eventi, musica dal vivo, sport e ritratti.">
+  <title>Claudio Meggiato — Fotografia</title>
+  <!-- Montserrat locale per evitare dipendenze esterne. -->
+  <link rel="stylesheet" href="style.css">
+  <script src="email.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="cursor-reveal.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Vai al contenuto</a>
+
+  <main id="main">
+    <div id="home">
+      <!-- Altezza 70svh: il primo tratto delle card resta visibile sotto la hero. -->
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="micro hero-kicker">Portfolio fotografico</p>
+        <h1 id="hero-title">Claudio<br>Meggiato</h1>
+        <div class="cursor-reveal" id="cursor-reveal" aria-hidden="true">
+          <img src="assets/profile.jpg" alt="" width="6000" height="4000">
+        </div>
+        <div class="hero-bottom">
+          <p class="hero-bio">Fotografia di eventi, musica dal vivo,<br>sport e ritratti.</p>
+          <a class="cta" href="#portfolio">Esplora i lavori <span aria-hidden="true">↘</span></a>
+        </div>
+      </section>
+
+      <!-- Copertine originali dalla selezione Portfolio breve. -->
+      <nav id="portfolio" class="category-home" aria-label="Categorie fotografiche">
+        <a class="category-card" href="#concerti">
+          <img src="assets/thumb/mga006.webp" alt="" loading="lazy" decoding="async">
+          <div class="card-label"><span class="micro card-number">01 /</span><h2>Concerti</h2><span class="card-arrow" aria-hidden="true">↗</span></div>
+        </a>
+        <a class="category-card" href="#sport">
+          <img src="assets/thumb/mga015.webp" alt="" loading="lazy" decoding="async">
+          <div class="card-label"><span class="micro card-number">02 /</span><h2>Sport</h2><span class="card-arrow" aria-hidden="true">↗</span></div>
+        </a>
+        <a class="category-card" href="#ritratti">
+          <img src="assets/thumb/mga012.webp" alt="" loading="lazy" decoding="async">
+          <div class="card-label"><span class="micro card-number">03 /</span><h2>Ritratti</h2><span class="card-arrow" aria-hidden="true">↗</span></div>
+        </a>
+        <a class="category-card" href="#eventi">
+          <img src="assets/thumb/mga022.webp" alt="" loading="lazy" decoding="async">
+          <div class="card-label"><span class="micro card-number">04 /</span><h2>Eventi</h2><span class="card-arrow" aria-hidden="true">↗</span></div>
+        </a>
+      </nav>
+
+      <section class="about" aria-labelledby="about-title">
+        <img class="about-photo" src="assets/chi-sono.webp" alt="Claudio Meggiato" width="1067" height="1600" loading="lazy" decoding="async">
+        <div class="about-content">
+          <h2 id="about-title" class="about-kicker">Chi sono</h2>
+          <div class="about-copy">
+            <p>Studente di Digital &amp; Graphic Design allo IUSVE, affianco agli studi di comunicazione visiva l'esplorazione della fotografia sul campo.</p>
+            <p>Questo portfolio raccoglie i miei primi lavori tra concerti, sport, eventi e ritratti: un percorso in evoluzione in cui cerco di restituire l'atmosfera e l'energia di ciò che ho davanti, imparando scatto dopo scatto come raccontare una scena dal vivo.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Le categorie funzionano con hash URL, anche aprendo il file localmente. -->
+    <section id="category-view" class="category-view" hidden aria-labelledby="category-title">
+      <div class="category-heading"><a href="#portfolio" class="back">← Portfolio</a><h1 id="category-title" tabindex="-1"></h1></div>
+      <div class="gallery" id="gallery"></div>
+    </section>
+  </main>
+  <footer class="site-footer" id="contatti">
+    <span class="footer-copy">© 2026 Claudio Meggiato</span>
+    <a class="footer-email protected-email" href="#" data-action="copy">Contattami</a>
+    <a class="footer-location" href="privacy.html">Privacy</a>
+  </footer>
+
+  <!-- Dialog nativo: focus confinato nel visualizzatore ed Esc per chiudere. -->
+  <dialog id="lightbox" aria-label="Visualizzatore fotografico">
+    <button id="close" aria-label="Chiudi fotografia">×</button>
+    <button class="arrow prev" id="prev" aria-label="Fotografia precedente">←</button>
+    <img id="viewer-image" src="assets/thumb/mga001.webp" data-full="assets/full/mga001.webp" alt="" loading="lazy" decoding="async">
+    <button class="arrow next" id="next" aria-label="Fotografia successiva">→</button>
+    <span id="viewer-count" class="micro" aria-live="polite"></span>
+  </dialog>
+</body>
+</html>
